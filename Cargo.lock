@@ -46,7 +46,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "bfs_rust"
+name = "bfs-rust"
 version = "0.1.0"
 dependencies = [
  "linux-kernel-module 0.1.0",

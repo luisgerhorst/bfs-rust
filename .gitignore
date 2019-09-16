@@ -1,0 +1,13 @@
+/.bfsrust.ko.cmd
+/.bfsrust.mod.o.cmd
+/.bfsrust.o.cmd
+/.cache.mk
+/.tmp_versions/bfsrust.mod
+/Module.symvers
+/bfs_rust.rust.o
+/bfsrust.ko
+/bfsrust.mod.c
+/bfsrust.mod.o
+/bfsrust.o
+/modules.order
+/target/

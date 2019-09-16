@@ -1,5 +1,5 @@
 [package]
-name = "bfs_rust"
+name = "bfs-rust"
 version = "0.1.0"
 authors = ["Geoffrey Thomas <geofft@ldpreload.com>", "Luis Gerhorst <bfs-rust@luisgerhorst.de>"]
 edition = "2018"
