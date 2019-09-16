@@ -1,4 +1,4 @@
-# Boot File System (BFS) Linux Kernel Module Implemented in Rust
+# Boot File System (BFS) Linux kmod in Rust
 
 Resources:
 - [Boot File System (Wiki)](https://en.wikipedia.org/wiki/Boot_File_System)
