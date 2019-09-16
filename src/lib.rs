@@ -1,5 +1,6 @@
 #![no_std]
 #![feature(const_str_as_bytes)]
+#![feature(const_raw_ptr_deref)]
 
 extern crate alloc;
 
@@ -13,14 +14,17 @@ struct HelloWorldModule {
     message: String,
 }
 
-// struct BFS {}
+struct BFS {}
 
-// impl FileSystem for BFS {
-//     // TODO: https://github.com/gereeter/llvm-safe/blob/9710754e107db61965f257ed9d6c55e311dd32aa/examples/kaleidoscope_lib/trans.rs
-//     const NAME: &'static CStr = const_cstr!("bfsrs");
-//     // TODO: Which flags are the default?
-//     const FLAGS: FileSystemFlags = FileSystemFlags::FS_REQUIRES_DEV;
-// }
+impl FileSystem for BFS {
+    // TODO: Is there a better way to do this?
+    // https://github.com/gereeter/llvm-safe/blob/9710754e107db61965f257ed9d6c55e311dd32aa/examples/kaleidoscope_lib/trans.rs
+    // uses a separate ConsCStr.
+    const NAME: &'static CStr = unsafe { &*("bfs-rust\x00" as *const str as *const CStr) };
+
+    // TODO: Which flags are the default?
+    const FLAGS: FileSystemFlags = FileSystemFlags::FS_REQUIRES_DEV;
+}
 
 impl linux_kernel_module::KernelModule for HelloWorldModule {
     fn init() -> linux_kernel_module::KernelResult<Self> {
