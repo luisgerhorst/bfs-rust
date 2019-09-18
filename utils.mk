@@ -1,11 +1,14 @@
-LOOP_IMAGE = loop0-img
-LOOP_DEV = /dev/loop0
-LOOP_MOUNTPOINT = loop0-mp
+# KO_DIR ?= /lib/modules/5.0.19-yocto-standard/extra
+KO_DIR ?= .
+
+LOOP_IMAGE ?= loop0-img
+LOOP_DEV ?= /dev/loop0
+LOOP_MOUNTPOINT ?= loop0-mp
 
 # Module
 
 insmod:
-	insmod /lib/modules/5.0.19-yocto-standard/extra/bfsrust.ko
+	insmod $(KO_DIR)/bfsrust.ko
 
 rmmod:
 	rmmod --syslog bfsrust # --syslog quiets the "could not open builtin file" error
