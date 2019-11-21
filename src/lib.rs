@@ -41,6 +41,8 @@ struct BFSSuperBlockInfo {
     // inner: Mutex<Inner>,
 }
 
+
+
 // End of code derived from bfs.h
 
 impl FileSystem for BFS {
@@ -48,11 +50,14 @@ impl FileSystem for BFS {
     const FLAGS: FileSystemFlags = FileSystemFlags::FS_REQUIRES_DEV;
 
     type SuperBlockInfo = BFSSuperBlockInfo;
+    type SuperOperations = BFSSuperOperations;
 
-    fn fill_super(fs_info: &mut Option<Box<Self::SuperBlockInfo>>) -> KernelResult<()> {
-        *fs_info = Some(Box::new(BFSSuperBlockInfo {
-
-        }));
+    fn fill_super(
+        sb: SuperBlock<Self::SuperBlockInfo>,
+        data: *mut c_types::c_void,
+        silent: c_types::c_int,
+    ) -> KernelResult<()> {
+        sb.set_fs_info(Some(Box::new(BFSSuperBlockInfo {})));
 
         Ok(())
     }
