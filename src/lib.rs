@@ -50,15 +50,13 @@ impl FileSystem for BFS {
     const FLAGS: FileSystemFlags = FileSystemFlags::FS_REQUIRES_DEV;
 
     type SuperBlockInfo = BFSSuperBlockInfo;
-    type SuperOperations = BFSSuperOperations;
 
     fn fill_super(
-        sb: SuperBlock<Self::SuperBlockInfo>,
+        sb: &mut SuperBlock<Self::SuperBlockInfo>,
         data: *mut c_types::c_void,
         silent: c_types::c_int,
     ) -> KernelResult<()> {
-        sb.set_fs_info(Some(Box::new(BFSSuperBlockInfo {})));
-
+        sb.into_fs_info(Box::new(BFSSuperBlockInfo {}));
         Ok(())
     }
 }
