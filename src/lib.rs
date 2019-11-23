@@ -56,7 +56,7 @@ impl FileSystem for BFS {
         data: *mut c_types::c_void,
         silent: c_types::c_int,
     ) -> KernelResult<()> {
-        sb.into_fs_info(Box::new(BFSSuperBlockInfo {}));
+        let h = sb.into_fs_info(Box::new(BFSSuperBlockInfo {}));
         Ok(())
     }
 }
